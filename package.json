@@ -1,0 +1,41 @@
+{
+  "name": "retro-bbs",
+  "displayName": "Retro BBS Terminal",
+  "description": "90년대 PC통신 스타일의 레트로 BBS 터미널 뷰어",
+  "version": "0.1.0",
+  "publisher": "ai-labs",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "retroBBS.open",
+        "title": "Retro BBS: Open Terminal"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "retroBBS.open",
+        "key": "ctrl+shift+b",
+        "mac": "cmd+shift+b"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0"
+  }
+}

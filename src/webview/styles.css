@@ -1,0 +1,467 @@
+@font-face {
+  font-family: "NeoDunggeunmo";
+  src: url("fonts/neodgm.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --bg-deep: #000044;
+  --bg-panel: #000066;
+  --bg-header: #0000aa;
+  --bg-statusbar: #888888;
+  --bg-input: #000033;
+  --bg-highlight: #0000cc;
+
+  --text-default: #cccccc;
+  --text-bright: #ffffff;
+  --text-green: #00ff00;
+  --text-yellow: #ffff00;
+  --text-cyan: #00ffff;
+  --text-magenta: #ff00ff;
+  --text-red: #ff4444;
+  --text-blue: #5555ff;
+  --text-dim: #666688;
+
+  --border-color: #4444aa;
+  --border-bright: #8888ff;
+
+  --font-main:
+    "NeoDunggeunmo", "D2Coding", "Courier New", "Consolas", monospace;
+
+  --font-size-base: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-default);
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  overflow: hidden;
+  height: 100vh;
+  cursor: default;
+}
+
+#bbs-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 8px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(0, 0, 80, 0.5);
+}
+
+/* CRT scanline overlay */
+#bbs-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 100;
+  border-radius: 12px;
+}
+
+/* CRT vignette (dark edges) */
+#bbs-screen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 101;
+  border-radius: 12px;
+}
+
+/* ── Header ── */
+#bbs-header {
+  background: var(--bg-header);
+  color: var(--text-bright);
+  padding: 6px 12px;
+  text-align: center;
+  border: 1px solid var(--border-bright);
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-size: calc(var(--font-size-base) + 2px);
+  font-weight: bold;
+  color: var(--text-yellow);
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 4px var(--text-yellow),
+    0 0 8px rgba(255, 255, 0, 0.3);
+}
+
+.header-subtitle {
+  font-size: calc(var(--font-size-base) - 1px);
+  color: var(--text-cyan);
+  margin-top: 2px;
+  text-shadow:
+    0 0 3px var(--text-cyan),
+    0 0 6px rgba(0, 255, 255, 0.2);
+}
+
+.header-path {
+  font-size: calc(var(--font-size-base) - 2px);
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* ── Content area ── */
+#bbs-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 12px;
+  background: var(--bg-deep);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+#bbs-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+#bbs-content::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+#bbs-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+/* ── Menu layout ── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  padding: 8px 0;
+}
+
+.menu-category {
+  margin-bottom: 4px;
+}
+
+.category-title {
+  color: var(--text-cyan);
+  font-weight: bold;
+  padding: 2px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 4px;
+  font-size: calc(var(--font-size-base) - 1px);
+  text-shadow: 0 0 3px var(--text-cyan);
+}
+
+.category-title::before {
+  content: "[ ";
+  color: var(--text-blue);
+}
+
+.category-title::after {
+  content: " ]";
+  color: var(--text-blue);
+}
+
+.menu-item {
+  padding: 2px 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  background: var(--bg-highlight);
+  color: var(--text-bright);
+}
+
+.menu-key {
+  color: var(--text-yellow);
+  font-weight: bold;
+  display: inline-block;
+  min-width: 28px;
+  text-shadow: 0 0 3px var(--text-yellow);
+}
+
+.menu-label {
+  color: var(--text-default);
+}
+
+.menu-item:hover .menu-label {
+  color: var(--text-bright);
+}
+
+/* ── Separator line ── */
+.separator {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 8px 0;
+}
+
+/* ── Status bar ── */
+#bbs-statusbar {
+  background: var(--bg-statusbar);
+  color: #000000;
+  padding: 4px 12px;
+  font-size: calc(var(--font-size-base) - 2px);
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+  border-top: none;
+}
+
+/* ── Input area ── */
+#bbs-input-area {
+  display: flex;
+  align-items: center;
+  background: var(--bg-input);
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  flex-shrink: 0;
+}
+
+.prompt {
+  color: var(--text-green);
+  font-weight: bold;
+  margin-right: 4px;
+  flex-shrink: 0;
+  text-shadow: 0 0 4px var(--text-green);
+}
+
+#bbs-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-green);
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  caret-color: var(--text-green);
+  text-shadow: 0 0 3px var(--text-green);
+}
+
+/* ── Content display (static pages) ── */
+.content-view {
+  white-space: pre-wrap;
+  color: var(--text-default);
+  line-height: 1.6;
+}
+
+.content-title {
+  color: var(--text-yellow);
+  font-weight: bold;
+  font-size: calc(var(--font-size-base) + 1px);
+  padding-bottom: 4px;
+  border-bottom: 1px double var(--border-bright);
+  margin-bottom: 8px;
+  text-shadow:
+    0 0 4px var(--text-yellow),
+    0 0 8px rgba(255, 255, 0, 0.3);
+}
+
+.content-stream {
+  white-space: pre-wrap;
+  color: var(--text-default);
+  line-height: 1.6;
+}
+
+/* ── Chat view ── */
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chat-msg {
+  padding: 2px 0;
+}
+
+.chat-msg.system {
+  color: var(--text-magenta);
+}
+
+.chat-msg.user .chat-sender {
+  color: var(--text-yellow);
+}
+
+.chat-msg.assistant .chat-sender {
+  color: var(--text-cyan);
+}
+
+.chat-sender {
+  font-weight: bold;
+  text-shadow: 0 0 3px currentColor;
+}
+
+.chat-text {
+  color: var(--text-default);
+  white-space: pre-wrap;
+}
+
+/* ── Error flash ── */
+.error-flash {
+  color: var(--text-red);
+  font-weight: bold;
+  padding: 4px 0;
+  animation: blink 0.8s ease-in-out;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* ── Box drawing ── */
+.box {
+  border: 1px solid var(--border-bright);
+  padding: 8px 12px;
+  margin: 4px 0;
+  background: var(--bg-panel);
+}
+
+.box-title {
+  color: var(--text-yellow);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* ── Cursor blink animation ── */
+.cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Loading dots ── */
+.loading::after {
+  content: "";
+  animation: dots 1.5s steps(4) infinite;
+}
+
+@keyframes dots {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+}
+
+/* ── Boot screen ── */
+.boot-screen {
+  white-space: pre;
+  color: var(--text-green);
+  line-height: 1.4;
+  padding: 8px;
+}
+
+.boot-line {
+  animation: bootFadeIn 0.15s ease-in;
+  text-shadow: 0 0 4px var(--text-green);
+}
+
+@keyframes bootFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Themes ── */
+
+/* Naunuri (나우누리) - Classic green terminal */
+[data-theme="naunuri"] {
+  --bg-deep: #001100;
+  --bg-panel: #002200;
+  --bg-header: #003300;
+  --bg-statusbar: #446644;
+  --bg-input: #001800;
+  --bg-highlight: #004400;
+
+  --text-default: #88cc88;
+  --text-bright: #ccffcc;
+  --text-green: #00ff00;
+  --text-yellow: #88ff44;
+  --text-cyan: #44ffaa;
+  --text-magenta: #ff88ff;
+  --text-red: #ff4444;
+  --text-blue: #44aa88;
+  --text-dim: #336633;
+
+  --border-color: #336633;
+  --border-bright: #55aa55;
+}
+
+/* Chollian (천리안) - Navy + orange/white */
+[data-theme="chollian"] {
+  --bg-deep: #0a0a2e;
+  --bg-panel: #12124a;
+  --bg-header: #1a1a6e;
+  --bg-statusbar: #8888aa;
+  --bg-input: #080828;
+  --bg-highlight: #2a2a7e;
+
+  --text-default: #ccccdd;
+  --text-bright: #ffffff;
+  --text-green: #44dd88;
+  --text-yellow: #ffaa44;
+  --text-cyan: #88bbff;
+  --text-magenta: #dd88ff;
+  --text-red: #ff6666;
+  --text-blue: #6688ff;
+  --text-dim: #555577;
+
+  --border-color: #444466;
+  --border-bright: #7777aa;
+}

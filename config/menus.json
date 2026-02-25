@@ -1,0 +1,138 @@
+{
+  "title": "★ 클로드 코드 ★",
+  "subtitle": "CUSTOM RETRO DESIGN",
+  "items": [
+    {
+      "key": "1",
+      "label": "프로젝트 탐색",
+      "type": "command",
+      "category": "개 발 도 구",
+      "command": "retroBBS.fileExplorer"
+    },
+    {
+      "key": "2",
+      "label": "Git 상태/로그",
+      "type": "command",
+      "category": "개 발 도 구",
+      "command": "retroBBS.gitStatus"
+    },
+    {
+      "key": "3",
+      "label": "터미널 실행",
+      "type": "command",
+      "category": "개 발 도 구",
+      "command": "workbench.action.terminal.new"
+    },
+    {
+      "key": "4",
+      "label": "작업 목록",
+      "type": "command",
+      "category": "개 발 도 구",
+      "command": "retroBBS.todoList"
+    },
+    {
+      "key": "11",
+      "label": "메모/노트",
+      "type": "content",
+      "category": "자 료 실",
+      "content": ""
+    },
+    {
+      "key": "12",
+      "label": "북마크",
+      "type": "content",
+      "category": "자 료 실",
+      "content": ""
+    },
+    {
+      "key": "21",
+      "label": "Claude 채팅",
+      "type": "chat",
+      "category": "AI 도 구"
+    },
+    {
+      "key": "22",
+      "label": "코드 리뷰",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.codeReview"
+    },
+    {
+      "key": "23",
+      "label": "코드 설명",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.codeExplain"
+    },
+    {
+      "key": "24",
+      "label": "커밋 메시지",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.commitMessage"
+    },
+    {
+      "key": "25",
+      "label": "프로젝트 분석",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.projectAnalysis"
+    },
+    {
+      "key": "26",
+      "label": "보안 감사",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.securityAudit"
+    },
+    {
+      "key": "27",
+      "label": "테스트 생성",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.generateTests"
+    },
+    {
+      "key": "28",
+      "label": "Git 변경 요약",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.gitSummary"
+    },
+    {
+      "key": "29",
+      "label": "에러 해결사",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.errorSolver"
+    },
+    {
+      "key": "30",
+      "label": "선택 코드 질문",
+      "type": "command",
+      "category": "AI 도 구",
+      "command": "retroBBS.askCode"
+    },
+    {
+      "key": "31",
+      "label": "환경 설정",
+      "type": "content",
+      "category": "시 스 템",
+      "content": ""
+    },
+    {
+      "key": "32",
+      "label": "메뉴 편집",
+      "type": "content",
+      "category": "시 스 템",
+      "content": ""
+    },
+    {
+      "key": "33",
+      "label": "도움말",
+      "type": "content",
+      "category": "시 스 템",
+      "content": "┌────────────────────────────────┐\n│         도 움 말               │\n├────────────────────────────────┤\n│                                │\n│  숫자키  : 메뉴 이동           │\n│  P       : 상위 메뉴           │\n│  T       : 초기 화면           │\n│  -/+     : 폰트 크기 조절      │\n│  Enter   : 입력 확인           │\n│  ESC     : 취소/뒤로           │\n│                                │\n│  채팅방에서:                   │\n│  Q       : 나가기              │\n│  Enter   : 메시지 전송         │\n│                                │\n│  AI 도구 (21~30):              │\n│  21: Claude 채팅               │\n│  22-25: 리뷰/설명/커밋/분석    │\n│  26: 보안 취약점 감사          │\n│  27: 테스트 코드 자동 생성     │\n│  28: Git 변경 이력 요약        │\n│  29: 에러 메시지 분석/해결     │\n│  30: 선택 코드에 대해 질문     │\n│                                │\n│  메뉴 편집 (32):               │\n│  add/del/hide/show 명령어      │\n│                                │\n│  환경 설정 (31):               │\n│  테마 전환 (하이텔/나우누리/   │\n│  천리안)                       │\n│                                │\n└────────────────────────────────┘"
+    }
+  ]
+}
