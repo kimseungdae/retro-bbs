@@ -25,6 +25,10 @@
 > PC통신 (PC-Tongsin) — Hitel, Naunuri, Chollian — into your VS Code
 > editor, packed with modern AI development tools powered by Claude Code CLI.
 
+<p align="center">
+  <img src="claude_retro.gif" alt="Retro BBS Terminal Demo" width="720">
+</p>
+
 ---
 
 ## Features
